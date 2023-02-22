@@ -23,7 +23,7 @@ function App() {
           Sistema Financeiro Pessoal
         </h1>
       </header>
-      <body className="m-auto max-l mb-12">
+      <body className="m-auto max-w-5xl mb-12">
         {/* Area de informacoes */}
 
         {/* Area de insercao */}

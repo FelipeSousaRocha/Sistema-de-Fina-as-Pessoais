@@ -1,14 +1,12 @@
-import * as C from './styles'
-
 export function TableArea() {
   return(
-    <table className="w-full bg-white p-3 shadow-[0px_0px_5px_#CCC] rounded-xl mt-5">
+    <table className="w-full bg-white p-5 shadow-[0px_0px_5px_#CCC] rounded-lg mt-5">
        <thead>
           <tr>
-            <C.TableHeadColumn width={100}>Data</C.TableHeadColumn>
-            <C.TableHeadColumn width={130}>Categoria</C.TableHeadColumn>
-            <C.TableHeadColumn>Titulo</C.TableHeadColumn>
-            <C.TableHeadColumn width={150}>Valor</C.TableHeadColumn>
+            <th className='p-5 w-20'>Data</th>
+            <th className='p-5 w-24'>Categoria</th>
+            <th className="p-5 w-auto">Titulo</th>
+            <th className="p-5 w-28">Valor</th>
           </tr>
        </thead>
        <tbody>
