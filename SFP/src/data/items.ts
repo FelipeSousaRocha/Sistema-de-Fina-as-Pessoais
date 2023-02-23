@@ -1,16 +1,8 @@
-import { Item } from "../types/Item";
+import { Item } from '../types/Item';
 
 export const items: Item[] = [
-  {
-    date: new Date(2021, 9, 15), category: 'food', title: 'McDonalds', value: 32.12
-  },
-  {
-    date: new Date(2021, 10, 8), category: 'food', title: 'BurgerKing', value: 29
-  },
-  {
-    date: new Date(2021, 9, 16), category: 'rent', title: 'Aluguel apartamento', value: 2300
-  },
-  {
-    date: new Date(2021, 9, 15), category: 'salary', title: 'Salario ITEP', value: 4500
-  }
-];// Array de objetos de itens
+    { date: new Date(2023, 2, 6), category: 'food', title: 'McDonalds', value: 32.12 },
+    { date: new Date(2023, 2, 15), category: 'food', title: 'Burger King', value: 28 },
+    { date: new Date(2023, 2, 16), category: 'rent', title: 'Aluguel Apt', value: 2300 },
+    { date: new Date(2023, 1, 18), category: 'salary', title: 'Salário ACME', value: 4500 },
+];
