@@ -5,6 +5,7 @@ import { categories } from "./data/categories";
 import { items } from "./data/items"; //Mutaveis por isso o uso do State
 import { getCurrentMonth, filterListByMonth } from "./helpers/dateFilter"; //Importa mes/ano atual
 import { TableArea } from "./components/TableArea";
+import { InfoArea } from "./components/InfoArea";
 
 function App() {
   const [list, setList] = useState(items); //Lista de items de data
@@ -16,6 +17,10 @@ function App() {
     }, [list, currentMounth] 
   );//Caso um desses Estados se modifique
 
+  const handleMonthChange = (newMonth: string) => {
+    setCurrentMounth(newMonth);
+  }
+
   return (
     <div>
       <header className="bg-blue-900 h-40 text-center">
@@ -24,7 +29,12 @@ function App() {
         </h1>
       </header>
       <body className="m-auto max-w-5xl mb-12">
+
         {/* Area de informacoes */}
+        <InfoArea 
+          currentMonth={currentMounth}
+          onMonthChange={handleMonthChange}
+        />
 
         {/* Area de insercao */}
 
