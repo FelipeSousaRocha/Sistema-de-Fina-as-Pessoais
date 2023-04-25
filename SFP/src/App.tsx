@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div>
-      <header className="bg-blue-900 h-40 text-center">
+      <header className="bg-gray-800 h-40 text-center">
         <h1 className="m-0 p-0 text-white pt-8 font-bold text-3xl">
           Sistema Financeiro Pessoal
         </h1>
