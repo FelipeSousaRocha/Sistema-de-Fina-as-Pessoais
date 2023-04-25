@@ -11,11 +11,31 @@ function App() {
   const [list, setList] = useState(items); //Lista de items de data
   const [filteredList, setFilteredList] = useState<Item[]>([]); //Array de Item vazio
   const [currentMounth, setCurrentMounth] = useState(getCurrentMonth()); //Mes/Ano atual
+  const [income, setIncome] = useState(0);
+  const [expanse, setExpanse] = useState(0);
 
   useEffect(()=>{
     setFilteredList( filterListByMonth(list, currentMounth) );//Funcao vai pegar a lista pura vai filtrar e gerar uma nova lista
     }, [list, currentMounth] 
   );//Caso um desses Estados se modifique
+
+  useEffect(()=>{
+    let income = 0;
+    let expanse = 0;
+
+    for (let i in filteredList) {
+      if (categories[filteredList[i].category].expense) {
+        expanse += filteredList[i].value;
+      } else{
+        income += filteredList[i].value;
+      }
+    }
+
+    setIncome(income);
+    setExpanse(expanse);
+
+  }, [filteredList])//Monitora a lista filtrada
+  //Modificar as depesas
 
   const handleMonthChange = (newMonth: string) => {
     setCurrentMounth(newMonth);
@@ -34,6 +54,8 @@ function App() {
         <InfoArea 
           currentMonth={currentMounth}
           onMonthChange={handleMonthChange}
+          income={income}
+          expanse={expanse}
         />
 
         {/* Area de insercao */}
