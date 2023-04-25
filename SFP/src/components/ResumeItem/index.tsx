@@ -1,14 +1,17 @@
+import * as C from './styles';
+
 type Props = {
     title: string;
     value: number;
+    color?: string;
 }
 
-export function ResumeItem({title, value}: Props) {
+export function ResumeItem({title, value, color}: Props) {
 
     return(
         <div className="flex-1">
             <div className="text-center font-bold text-gray-700 mb-1">{title}</div>
-            <div className="text-center font-bold text-black">R$ {value}</div>
+            <C.Info color={color}>R$ {value}</C.Info>
         </div>
     );
 }

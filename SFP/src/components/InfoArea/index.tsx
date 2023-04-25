@@ -37,7 +37,11 @@ export function InfoArea ({ currentMonth, onMonthChange, income, expanse }: Prop
             <div className="flex flex-1">
                 <ResumeItem title="Receita" value={income}/>
                 <ResumeItem title="Despesa" value={expanse}/>
-                <ResumeItem title="Balanço" value={income-expanse}/>
+                <ResumeItem 
+                title="Balanço" 
+                value={income-expanse}
+                color={(income-expanse) < 0 ? 'red' : 'green'}
+                />
             </div>
         </div>
     );

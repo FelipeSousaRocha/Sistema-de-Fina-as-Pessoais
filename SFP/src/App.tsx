@@ -20,19 +20,19 @@ function App() {
   );//Caso um desses Estados se modifique
 
   useEffect(()=>{
-    let income = 0;
-    let expanse = 0;
+    let incomeCount = 0;
+    let expanseCount = 0;
 
     for (let i in filteredList) {
       if (categories[filteredList[i].category].expense) {
-        expanse += filteredList[i].value;
+        expanseCount += filteredList[i].value;
       } else{
-        income += filteredList[i].value;
+        incomeCount += filteredList[i].value;
       }
     }
 
-    setIncome(income);
-    setExpanse(expanse);
+    setIncome(incomeCount);//atualiza
+    setExpanse(expanse);//atualiza
 
   }, [filteredList])//Monitora a lista filtrada
   //Modificar as depesas
