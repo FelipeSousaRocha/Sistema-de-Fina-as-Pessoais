@@ -6,6 +6,7 @@ import { items } from "./data/items"; //Mutaveis por isso o uso do State
 import { getCurrentMonth, filterListByMonth } from "./helpers/dateFilter"; //Importa mes/ano atual
 import { TableArea } from "./components/TableArea";
 import { InfoArea } from "./components/InfoArea";
+import { InputArea } from "./components/InputArea";
 
 function App() {
   const [list, setList] = useState(items); //Lista de items de data
@@ -32,13 +33,19 @@ function App() {
     }
 
     setIncome(incomeCount);//atualiza
-    setExpanse(expanse);//atualiza
+    setExpanse(expanseCount);//atualiza
 
   }, [filteredList])//Monitora a lista filtrada
   //Modificar as depesas
 
   const handleMonthChange = (newMonth: string) => {
     setCurrentMounth(newMonth);
+  }
+
+  const handleAddItem = (item: Item) =>{
+    let newList = [...list];
+    newList.push(item);
+    setList(newList);
   }
 
   return (
@@ -59,6 +66,7 @@ function App() {
         />
 
         {/* Area de insercao */}
+        <InputArea onAdd={handleAddItem}/>
 
         {/* Tabela de itens */}
         <TableArea list={filteredList}/>
