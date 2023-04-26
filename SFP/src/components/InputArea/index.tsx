@@ -20,7 +20,7 @@ export function InputArea({onAdd}: Props) {
         <div className="bg-white rounded-lg shadow-[0px_0px_5px_#CCC] mt-5 p-5">
                 <div className="flex">
                     <label className="font-bold">Titulo:</label>
-                    <input className="ml-1" type="text" />
+                    <input className="ml-1" type="text"/>
                 </div>
                 <div className="flex mt-2">
                     <label className="font-bold">Categoria:</label>
