@@ -1,73 +1,87 @@
-import { useState } from "react";
-import { Item } from "../../types/Item";
+import { useState } from 'react';
+import * as C from './styles';
+import { Item } from '../../types/Item';
+
+import { categories } from '../../data/categories';
+import { newDateAdjusted } from '../../helpers/dateFilter';
 
 type Props = {
-    onAdd: (item : Item) => void;
-}
+  onAdd: (item: Item) => void;
+};
 
-export function InputArea({onAdd}: Props) {
-    //onAdd(newItem);
+export const InputArea = ({ onAdd }: Props) => {
+  const [dateField, setDateField] = useState('');
+  const [categoryField, setCategoryField] = useState('');
+  const [titleField, setTitleField] = useState('');
+  const [valueField, setValueField] = useState(0);
 
-    const handleSingupForm = (event: { preventDefault: () => void; }) => {
-        event.preventDefault();
-        let newItem: Item = {
-            preventDefault: function (): unknown {
-                throw new Error("Function not implemented.");
-            },
-            target: undefined,
-            date: new Date(date),
-            category: category,
-            title: title,
-            value: parseInt(value)
-        }
-        onAdd(newItem);
-        console.log(newItem)
+  let categoryKeys: string[] = Object.keys(categories);
+
+  const handleAddEvent = () => {
+    let errors: string[] = [];
+
+    if(isNaN(new Date(dateField).getTime())) {
+      errors.push('Data inválida!');
+    }
+    if(!categoryKeys.includes(categoryField)) {
+      errors.push('Categoria inválida!');
+    }
+    if(titleField === '') {
+      errors.push('Título vazio!');
+    }
+    if(valueField <= 0) {
+      errors.push('Valor inválido!');
     }
 
-    const [title, setTitle] = useState('');
-    const [category, setCategory] = useState('');
-    const [date, setDate] = useState('');
-    const [value, setValue] = useState('');
+    if(errors.length > 0) {
+      alert(errors.join("\n"));
+    } else {
+      onAdd({
+        date: newDateAdjusted(dateField),
+        category: categoryField,
+        title: titleField,
+        value: valueField
+      });
+      clearFields();
+    }
+  }
 
-    return(
-        <div className="bg-white rounded-lg shadow-[0px_0px_5px_#CCC] mt-5 p-5">
-                <form onSubmit={handleSingupForm}>
-                    <div className="flex">
-                        <label className="font-bold">Titulo:</label>
-                        <input className="ml-1"
-                        type="text"
-                        value={title}
-                        onChange={(event) => setTitle(event.target.value)}
-                        />
-                    </div>
-                    <div className="flex mt-2">
-                        <label className="font-bold">Categoria:</label>
-                        <input className="ml-1"
-                        type="text"
-                        value={category}
-                        onChange={(event) => setCategory(event.target.value)}
-                        />
-                    </div>
-                    <div className="flex mt-2">
-                        <label className="font-bold">Data:</label>
-                        <input className="ml-1"
-                        type="date"
-                        value={date}
-                        onChange={(event) => setDate(event.target.value)}
-                        />
-                    </div>
-                    <div className="flex mt-2">
-                        <label className="font-bold">Valor:</label>
-                        <input className="ml-1"
-                        type="number"
-                        value={value}
-                        onChange={(event) => setValue(event.target.value)}
-                        />
-                    </div>
-                    <button className="font-semibold mt-2" 
-                    type="submit"
-                    >Adicionar</button>
-                </form>
-        </div>
-    );
+  const clearFields = () => {
+    setDateField('');
+    setCategoryField('');
+    setTitleField('');
+    setValueField(0);
+  }
+
+  return (
+      <C.Container>
+        <C.InputLabel>
+          <C.InputTitle>Data</C.InputTitle>
+          <C.Input type="date" value={dateField} onChange={e => setDateField(e.target.value)} />
+        </C.InputLabel>
+        <C.InputLabel>
+          <C.InputTitle>Categoria</C.InputTitle>
+          <C.Select value={categoryField} onChange={e => setCategoryField(e.target.value)}>
+            <>
+              <option></option>
+              {categoryKeys.map((key, index) => (
+                <option key={index} value={key}>{categories[key].title}</option>
+              ))}
+            </>
+          </C.Select>
+        </C.InputLabel>
+        <C.InputLabel>
+          <C.InputTitle>Título</C.InputTitle>
+          <C.Input type="text" value={titleField} onChange={e => setTitleField(e.target.value)} />
+        </C.InputLabel>
+        <C.InputLabel>
+          <C.InputTitle>Valor</C.InputTitle>
+          <C.Input type="number" value={valueField} onChange={e => setValueField(parseFloat(e.target.value))} />
+        </C.InputLabel>
+        <C.InputLabel>
+          <C.InputTitle>&nbsp;</C.InputTitle>
+          <C.Button onClick={handleAddEvent}>Adicionar</C.Button>
+        </C.InputLabel>
+      </C.Container>
+  );
 }

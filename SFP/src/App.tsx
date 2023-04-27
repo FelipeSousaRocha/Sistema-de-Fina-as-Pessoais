@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react"; //UseEffect para monitorar determinadas circunstancias
 import { Item } from "./types/Item";
-import { Category } from "./types/Category";
 import { categories } from "./data/categories";
 import { items } from "./data/items"; //Mutaveis por isso o uso do State
 import { getCurrentMonth, filterListByMonth } from "./helpers/dateFilter"; //Importa mes/ano atual
