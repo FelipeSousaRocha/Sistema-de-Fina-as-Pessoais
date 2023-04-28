@@ -17,7 +17,7 @@ export function ResumeItem({title, value, color}: Props) {
             </C.Title>
             <C.Info 
                 color={color}>
-                    R$ {value}
+                    R$ {value.toFixed(2)}
             </C.Info>
         </div>
     );

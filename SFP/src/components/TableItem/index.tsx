@@ -20,7 +20,7 @@ export function TableItem({ item }: Props) {
       </td>
       <td className="p-5 w-auto">{item.title}</td>
       <td className="p-5 w-28">
-        <Value color={categories[item.category].expense ? 'red' : 'green'}> R$ {item.value}</Value>
+        <Value color={categories[item.category].expense ? 'red' : 'green'}> R$ {item.value.toFixed(2)}</Value>
       </td>
     </tr>
   );
