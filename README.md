@@ -10,6 +10,7 @@ As ferramentas a seguir estão sendo utilizadas no projeto:
 
 # Rodar aplicação
 ```bash
+npm i
 npm run dev
 ```
 
